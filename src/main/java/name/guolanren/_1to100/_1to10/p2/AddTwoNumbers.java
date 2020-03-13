@@ -7,7 +7,7 @@ package name.guolanren._1to100._1to10.p2;
 public class AddTwoNumbers {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode sumListNode = new ListNode(0);
+        ListNode sumListNode = l1;
         ListNode currentNode = sumListNode;
         ListNode prevNode = null;
         int carry = 0;
@@ -37,7 +37,6 @@ public class AddTwoNumbers {
             l1 = l1.next;
             l2 = l2.next;
             prevNode = currentNode;
-            currentNode.next = new ListNode(0);
             currentNode = currentNode.next;
         }
         return sumListNode;
@@ -47,22 +46,28 @@ public class AddTwoNumbers {
      * ListNode 加上进位
      */
     private ListNode withCarry(ListNode l, int carry) {
-        // ListNode 不为空，加上进位
+        ListNode head = l;
         if (l != null) {
-            l.val += carry;
-            // 新的进位 1，递归操作
-            if (l.val > 9) {
+            while (true) {
+                l.val += carry;
+
+                if (l.val < 10) {
+                    break;
+                }
+
                 l.val -= 10;
-                l.next = withCarry(l.next, 1);
+                carry = 1;
+
+                if (l.next == null) {
+                    l.next = new ListNode(carry);
+                    break;
+                }
+
+                l = l.next;
             }
-            // 返回加上进位后的 ListNode
-            return l;
-        // ListNode 为空，进位为 1，构建一个 val 为 1 的 ListNode
-        } else if (carry == 1){
+        } else if (carry > 0) {
             return new ListNode(carry);
-        // 返回 null
-        } else {
-            return null;
         }
+        return head;
     }
 }
