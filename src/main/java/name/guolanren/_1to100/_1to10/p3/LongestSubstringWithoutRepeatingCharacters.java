@@ -11,7 +11,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
         int maxLength = 0;
         int byeIndex = 0;
-        // 乱序的候选最大字符串
+        // 乱序的候选最长字符串
         Set<Character> candidate = new HashSet<>();
         for (int i = 0; i < s.length(); i++) {
             // 已经追不上啦，放弃吧
