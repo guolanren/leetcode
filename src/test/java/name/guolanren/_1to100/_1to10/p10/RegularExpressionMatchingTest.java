@@ -12,10 +12,12 @@ import static org.junit.Assert.assertTrue;
 public class RegularExpressionMatchingTest {
 
     private RegularExpressionMatching regularExpressionMatching;
+    private RegularExpressionMatching2 regularExpressionMatching2;
 
     @Before
     public void before() {
         regularExpressionMatching = new RegularExpressionMatching();
+        regularExpressionMatching2 = new RegularExpressionMatching2();
     }
 
     @Test
@@ -27,4 +29,13 @@ public class RegularExpressionMatchingTest {
         assertFalse(regularExpressionMatching.isMatch("mississippi", "mis*is*p*."));
     }
 
+    @Test
+    public void test2() {
+        assertFalse(regularExpressionMatching2.isMatch("aa", "a"));
+        assertTrue(regularExpressionMatching2.isMatch("aa", "a*"));
+        assertTrue(regularExpressionMatching2.isMatch("ab", ".*"));
+        assertTrue(regularExpressionMatching2.isMatch("aab", "c*a*b"));
+        assertFalse(regularExpressionMatching2.isMatch("mississippi", "mis*is*p*."));
+        assertTrue(regularExpressionMatching2.isMatch("mississippi", "mis*is*ip*."));
+    }
 }
