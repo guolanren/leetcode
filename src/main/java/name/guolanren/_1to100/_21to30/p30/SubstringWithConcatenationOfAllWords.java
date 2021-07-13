@@ -24,19 +24,21 @@ public class SubstringWithConcatenationOfAllWords {
 
         int wordSize = words[0].length();
         int windowSize = wordSize * words.length;
-        for (int i = 0; i < s.length() - windowSize; i++) {
-            String subStr = s.substring(i, i + windowSize);
-            Map<String, Integer> subStrWordFreq = new HashMap<>(words.length);
-            for (int j = words.length - 1; j >= 0; j--) {
-                String word = subStr.substring(j * wordSize, (j + 1) * wordSize);
-                int freq = subStrWordFreq.getOrDefault(word, 0) + 1;
-                if (freq > targetWordFreq.getOrDefault(word, 0)) {
-                    i = i + j * wordSize;
-                    break;
-                } else if (j == 0) {
-                    indices.add(i);
-                } else {
-                    subStrWordFreq.put(word, freq);
+        for (int i = 0; i < wordSize; i++) {
+            for (int j = i; j + windowSize <= s.length(); j += wordSize) {
+                String subStr = s.substring(j, j + windowSize);
+                Map<String, Integer> subStrWordFreq = new HashMap<>(words.length);
+                for (int k = words.length - 1; k >= 0; k--) {
+                    String word = subStr.substring(k * wordSize, (k + 1) * wordSize);
+                    int freq = subStrWordFreq.getOrDefault(word, 0) + 1;
+                    if (freq > targetWordFreq.getOrDefault(word, 0)) {
+                        j = j + k * wordSize;
+                        break;
+                    } else if (k == 0) {
+                        indices.add(j);
+                    } else {
+                        subStrWordFreq.put(word, freq);
+                    }
                 }
             }
         }
