@@ -3,7 +3,6 @@ package name.guolanren._1to100._21to30.p30;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
