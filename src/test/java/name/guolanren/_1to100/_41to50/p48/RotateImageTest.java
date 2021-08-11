@@ -1,10 +1,13 @@
-package name.guolanren._1to100._41to50.p46;
+package name.guolanren._1to100._41to50.p48;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 
+/**
+ * @author guolanren
+ */
 public class RotateImageTest {
 
     private RotateImage rotateImage;

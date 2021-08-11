@@ -1,4 +1,4 @@
-package name.guolanren._1to100._41to50.p46;
+package name.guolanren._1to100._41to50.p48;
 
 /**
  * @link https://leetcode.com/problems/rotate-image/
