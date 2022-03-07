@@ -1,7 +1,5 @@
 package name.guolanren._1to100._41to50.p50;
 
-import java.math.BigDecimal;
-
 /**
  * @link https://leetcode.com/problems/powx-n/
  * @author guolanren
