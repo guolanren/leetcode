@@ -1,6 +1,5 @@
 package name.guolanren._1to100._51to60.p52;
 
-import name.guolanren._1to100._51to60.p51.NQueens;
 import org.junit.Test;
 
 /**
