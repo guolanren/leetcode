@@ -3,7 +3,8 @@ package name.guolanren._1to100._81to90.p89;
 import java.util.*;
 
 /**
- * @author guoyaozhan
+ * @link https://leetcode.com/problems/gray-code/
+ * @author guolanren
  */
 public class GrayCode {
 

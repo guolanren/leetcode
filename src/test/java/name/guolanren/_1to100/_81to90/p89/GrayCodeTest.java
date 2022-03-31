@@ -3,6 +3,9 @@ package name.guolanren._1to100._81to90.p89;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author guolanren
+ */
 public class GrayCodeTest {
 
     private GrayCode grayCode;
