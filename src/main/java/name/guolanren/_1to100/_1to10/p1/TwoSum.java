@@ -10,25 +10,23 @@ import java.util.Map;
 public class TwoSum {
 
     public int[] twoSum(int[] nums, int target) {
+        int length = nums.length;
+        Map<Integer, Integer> numsMap = new HashMap<>(length);
+        Integer current;
+        Integer lookFor;
 
-        int[] indices = new int[2];
-        Map<Integer, Integer> numsMap = new HashMap<>(nums.length);
-
-        for (int i = 0; i < nums.length; i++) {
-            int current = nums[i];
-            int anotherLookFor =  target - current;
-            Integer anotherIndex;
+        for (int i = 0; i < length; i++) {
+            current = nums[i];
 
             // 如果待查找的数在 map 中有匹配，则表示找到符合要求的 indices
-            if ((anotherIndex = numsMap.get(anotherLookFor)) != null) {
-                indices[0] = anotherIndex;
-                indices[1] = i;
+            if ((lookFor = numsMap.get(target - current)) != null) {
+                return new int[]{lookFor, i};
             }
 
-            numsMap.put(nums[i], i);
+            numsMap.put(current, i);
         }
 
-        return indices;
+        return new int[]{-1, -1};
     }
 
 }
