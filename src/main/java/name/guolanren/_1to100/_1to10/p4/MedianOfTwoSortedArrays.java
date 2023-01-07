@@ -7,37 +7,32 @@ package name.guolanren._1to100._1to10.p4;
 public class MedianOfTwoSortedArrays {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        // 从左（小值）开始记录数
-        int leftNum = Integer.MIN_VALUE;
-        // 从右（大值）开始记录数
-        int rightNum = Integer.MAX_VALUE;
+        int m = nums1.length;
+        int n = nums2.length;
+        int left = (m + n + 1) / 2;
+        int right = (m + n + 2) / 2;
 
-        // 数组1左（小值）索引
-        int nums1Left = 0;
-        // 数组2左（小值）索引
-        int nums2Left = 0;
-        // 数组1右（大值）索引
-        int nums1Right = nums1.length - 1;
-        // 数组2右（大值）索引
-        int nums2Right = nums2.length - 1;
+        return (findKth(nums1, 0, nums2, 0, left) + findKth(nums1, 0, nums2, 0, right)) / 2.0;
+    }
 
-        // 从两边向中间，直到两个记录数相遇
-        while (true) {
-            if (nums1Left > nums1Right) {
-                if (nums2Left > nums2Right) {
-                    break;
-                }
-                leftNum = nums2[nums2Left++];
-                rightNum = nums2[nums2Right--];
-            } else if (nums2Left <= nums2Right){
-                leftNum = nums1[nums1Left] < nums2[nums2Left] ? nums1[nums1Left++] : nums2[nums2Left++];
-                rightNum = nums1[nums1Right] > nums2[nums2Right] ? nums1[nums1Right--] : nums2[nums2Right--];
-            } else {
-                leftNum = nums1[nums1Left++];
-                rightNum = nums1[nums1Right--];
-            }
+    private int findKth(int[] nums1, int i, int[] nums2, int j, int k) {
+        if (i >= nums1.length) {
+            return nums2[j + k - 1];
         }
-        return (leftNum + rightNum) * 1.0 / 2;
+        if (j >= nums2.length) {
+            return nums1[i + k - 1];
+        }
+        if (k == 1) {
+            return Math.min(nums1[i], nums2[j]);
+        }
+        int midVal1 = (i + k / 2 -1 < nums1.length) ? nums1[i + k / 2 - 1] : Integer.MAX_VALUE;
+        int midVal2 = (j + k / 2 -1 < nums2.length) ? nums2[j + k / 2 - 1] : Integer.MAX_VALUE;
+
+        if (midVal1 < midVal2) {
+            return findKth(nums1, i + k / 2, nums2, j, k - k / 2);
+        } else {
+            return findKth(nums1, i, nums2, j + k / 2, k - k / 2);
+        }
     }
 
 }
